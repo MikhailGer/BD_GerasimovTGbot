@@ -12,7 +12,7 @@ async def get_DATABASE_FILE():
 
 
 async def admin_check(id):
-    async with aiofiles.open("C:\\Users\Mih\PycharmProjects\DB_Gerasimov_TG\pythonProject\config\\adminidlist.txt",
+    async with aiofiles.open("config\\adminidlist.txt",
                              'r') as file:
 
         line = await file.readline()
@@ -27,7 +27,7 @@ async def admin_check(id):
 
 
 async def admin_add(id):
-    async with aiofiles.open("C:\\Users\Mih\PycharmProjects\DB_Gerasimov_TG\pythonProject\config\\adminidlist.txt",
+    async with aiofiles.open("config\\adminidlist.txt",
                              'a+') as file:
         id = str(id)
         await file.write('\n')
@@ -36,11 +36,11 @@ async def admin_add(id):
 
 
 async def admin_delete(id):
-    async with aiofiles.open("C:\\Users\Mih\PycharmProjects\DB_Gerasimov_TG\pythonProject\config\\adminidlist.txt",
+    async with aiofiles.open("config\\adminidlist.txt",
                              'r') as file:
         lines = await file.readlines()
 
-    async with aiofiles.open("C:\\Users\Mih\PycharmProjects\DB_Gerasimov_TG\pythonProject\config\\adminidlist.txt",
+    async with aiofiles.open("config\\adminidlist.txt",
                              'w') as file:
         for line in lines:
             line = line.strip()
@@ -52,7 +52,7 @@ async def admin_delete(id):
 
 
 async def admin_clear():
-    async with aiofiles.open("C:\\Users\Mih\PycharmProjects\DB_Gerasimov_TG\pythonProject\config\\adminidlist.txt",
+    async with aiofiles.open("config\\adminidlist.txt",
                              'w+') as file:
         await file.write('')
         return True
