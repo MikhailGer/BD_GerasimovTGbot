@@ -1,0 +1,1 @@
+greet = "Hi, {name}, data base is active!"
