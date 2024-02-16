@@ -55,6 +55,6 @@ async def admin_clear():
     async with aiofiles.open("config/adminidlist.txt",
                              'w+') as file:
         await file.write('')
-        
+
         return True
 #fuckin git)
