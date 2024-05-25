@@ -44,7 +44,6 @@ class DB:
                     TEXT NOT NULL, email TEXT NOT NULL,age INTEGER)''') as cursor_backup:
                         data = await cursor.fetchall()
                         for user in data:
-                            print(user)
                             sql = 'INSERT INTO Users (id, username, email, age) VALUES (?, ?, ?, ?)'
                             await cursor_backup.execute(sql, (user[0], user[1], user[2], user[3]))
                         print('Backup completed successfully!')
