@@ -40,13 +40,11 @@ class DB:
         async with DB(f'data\my_database_backup_{current_datetime_str}.db') as connection_backup:
             async with self.lock:
                 async with self.db.execute('SELECT id, username, email, age FROM Users') as cursor:
-                    async with connection_backup.db.execute('''CREATE TABLE Users (id INTEGER PRIMARY KEY,username TEXT NOT NULL,email TEXT
-                    NOT NULL,age INTEGER)''') as cursor_backup:
-                        result_data = []
+                    async with connection_backup.db.execute('''CREATE TABLE IF NOT EXISTS Users (id INTEGER,username 
+                    TEXT NOT NULL, email TEXT NOT NULL,age INTEGER)''') as cursor_backup:
                         data = await cursor.fetchall()
                         for user in data:
-                            result_data.append({
-                                "id": user[0], "username": user[1], "email": user[2], "age": user[3], })
+                            print(user)
                             sql = 'INSERT INTO Users (id, username, email, age) VALUES (?, ?, ?, ?)'
                             await cursor_backup.execute(sql, (user[0], user[1], user[2], user[3]))
                         print('Backup completed successfully!')
